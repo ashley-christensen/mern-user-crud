@@ -29,6 +29,6 @@ app.post("/createUser", async (req, res) => {
 
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
  console.log('SERVER RUNS on port 3000!!');
 });

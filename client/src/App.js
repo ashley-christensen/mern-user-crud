@@ -1,25 +1,54 @@
 
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 function App() {
-  const [listOfUsers, setListOfUsers] = useState([{ name: 'Ashley', age: 35, username: "ashleyc" }]);
+  const [listOfUsers, setListOfUsers] = useState([]);
   const [name, setName] = useState('');
   const [age, setAge] = useState(null);
   const [username, setUsername] = useState('');
 
-  console.log(name);
+  useEffect(() => {
+    Axios.get('http://localhost:3001/getUsers')
+      .then((response) => {
+        setListOfUsers(response.data);
+        console.log(response.data);
+      });
+  }, []);
+
+  // const handleSubmit = () => {
+  //   setName(name);
+  //   console.log('name', name);
+  //   setAge(age);
+  //   console.log('age', age);
+  //   setUsername(username);
+  //   const newUser = JSON.stringify({
+  //     name,
+  //     age,
+  //     username
+  //   });
+
+  //   Axios.post('http://localhost:3000/createUser', {
+  //     body: newUser
+  //   })
+  //     .then((response) => console.log(response));
+
+  // };
   return (
-    <div>
-      <div className='displayContainer'>
-        <div className="usersDisplay">
-          <h3>List of Users</h3>
-          {listOfUsers.map((user) => (
-            <div>{user.name}</div>
-          ))}
-        </div>
+
+    <div className='container'>
+      <div className="userList">
+        <h3>List of Users</h3>
+        {listOfUsers.map((user) => (
+          <div className="userCard">
+            <h5>Name: {user.name}</h5>
+            <p>Age: {user.age}</p>
+            <p>Username: {user.username}</p>
+          </div>
+        ))}
       </div>
-      <div className="container">
+      <div>
         <form id="user" action="" method="post">
           <h3>Add User</h3>
           <h4>Please fill out your information</h4>
@@ -50,10 +79,15 @@ function App() {
               }}
               placeholder="Your username" type="username" tabindex="3" required />
           </fieldset>
-          <button name="submit" type="submit" id="user-submit" data-submit="...Sending">Submit</button>
+          <button
+            // onClick={handleSubmit}
+            name="submit" type="submit" id="user-submit" data-submit="...Sending"
+          >Submit</button>
         </form>
       </div>
+
     </div>
+
   );
 }
 

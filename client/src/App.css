@@ -59,31 +59,45 @@ body {
 	color: #777;
 	background: #eeb5b5;
 }
-.displayContainer {
-	position: relative;
-	margin: 0 auto;
-	width: 100%;
-	max-width: 400%;
-}
+
 .usersDisplay {
-	background: #f9f9f9;
-	padding: 25px;
-	margin: 150px;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	max-width: 400px;
+	width: 100%;
+	margin: 0 1200px 0 90px;
+	position: relative;
 }
 
-.usersDisplay h3 {
+.userList h3 {
 	display: block;
 	font-size: 30px;
 	font-weight: 300;
 	margin-bottom: 10px;
 }
 
+.userList {
+	background: #f9f9f9;
+	padding: 25px;
+	margin: 150px 0;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.userCard {
+	background: #c3adc3;
+	padding: 15px;
+	border-radius: 9px;
+	color: #f1f1f1;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
 .container {
-	max-width: 400px;
-	width: 100%;
+	/* max-width: 1200px; */
+	/* width: 100%; */
+	width: 1200px;
 	margin: 0 auto;
-	position: relative;
+	display: flex;
+	align-items: start;
+	gap: 100px;
 }
 
 #user input[type='text'],
