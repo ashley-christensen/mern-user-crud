@@ -3,8 +3,11 @@ const app = express();// use for middlewares, api start, create routes
 const mongoose = require("mongoose");
 const UserModel = require('./models/Users'); // Model in db
 
+const cors = require("cors");
+
 
 app.use(express.json());
+app.use(cors());
 mongoose.connect("mongodb+srv://mongo:mongo@cluster0.cajquna.mongodb.net/myMERN?retryWrites=true&w=majority");
 
 app.get("/getUsers", (req, res) => {
@@ -26,6 +29,6 @@ app.post("/createUser", async (req, res) => {
 
 });
 
-app.listen(3020, () => {
- console.log('SERVER RUNS on port 3020!!');
+app.listen(3000, () => {
+ console.log('SERVER RUNS on port 3000!!');
 });
