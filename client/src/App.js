@@ -10,31 +10,23 @@ function App() {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    Axios.get('http://localhost:3001/getUsers')
+    Axios.get('http://localhost:3002/getUsers')
       .then((response) => {
         setListOfUsers(response.data);
         console.log(response.data);
       });
   }, []);
 
-  // const handleSubmit = () => {
-  //   setName(name);
-  //   console.log('name', name);
-  //   setAge(age);
-  //   console.log('age', age);
-  //   setUsername(username);
-  //   const newUser = JSON.stringify({
-  //     name,
-  //     age,
-  //     username
-  //   });
+  const createUser = () => {
+    Axios.post('http://localhost:3002/createUser', {
+      name, age, username
+    }).then((response) => {
+      setListOfUsers([...listOfUsers, {
+        name, age, username
+      }]);
+    });
+  };
 
-  //   Axios.post('http://localhost:3000/createUser', {
-  //     body: newUser
-  //   })
-  //     .then((response) => console.log(response));
-
-  // };
   return (
 
     <div className='container'>
@@ -54,7 +46,6 @@ function App() {
           <h4>Please fill out your information</h4>
           <fieldset>
             <input
-              value={name}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -63,26 +54,24 @@ function App() {
           </fieldset>
           <fieldset>
             <input
-              value={age}
               onChange={(e) => {
                 setAge(e.target.value);
                 console.log(age);
               }}
-              placeholder="Your age" type="age" tabindex="2" required />
+              placeholder="Your age" type="number" tabindex="2" required />
           </fieldset>
           <fieldset>
             <input
-              value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
                 console.log(username);
               }}
-              placeholder="Your username" type="username" tabindex="3" required />
+              placeholder="Your username" type="text" tabindex="3" required />
           </fieldset>
           <button
-            // onClick={handleSubmit}
-            name="submit" type="submit" id="user-submit" data-submit="...Sending"
-          >Submit</button>
+            onClick={createUser}
+            name="submit" id="user-submit" type="submit" data-submit="...Sending"
+          >Create User</button>
         </form>
       </div>
 
