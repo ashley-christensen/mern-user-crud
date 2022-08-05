@@ -10,7 +10,7 @@ function App() {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    Axios.get('http://localhost:3002/getUsers')
+    Axios.get('/getUsers')
       .then((response) => {
         setListOfUsers(response.data);
         console.log(response.data);
@@ -18,12 +18,14 @@ function App() {
   }, []);
 
   const createUser = () => {
-    Axios.post('http://localhost:3002/createUser', {
+    Axios.post('/createUser', {
       name, age, username
     }).then((response) => {
+      console.log('response', response);
       setListOfUsers([...listOfUsers, {
         name, age, username
       }]);
+      console.log('list of users', listOfUsers);
     });
   };
 
@@ -46,6 +48,7 @@ function App() {
           <h4>Please fill out your information</h4>
           <fieldset>
             <input
+              value={name}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -54,6 +57,7 @@ function App() {
           </fieldset>
           <fieldset>
             <input
+              value={age}
               onChange={(e) => {
                 setAge(e.target.value);
                 console.log(age);
@@ -62,6 +66,7 @@ function App() {
           </fieldset>
           <fieldset>
             <input
+              value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
                 console.log(username);
