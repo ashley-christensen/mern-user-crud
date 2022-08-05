@@ -17,7 +17,8 @@ function App() {
       });
   }, []);
 
-  const createUser = () => {
+  const createUser = (e) => {
+    e.preventDefault();
     Axios.post('/createUser', {
       name, age, username
     }).then((response) => {
@@ -43,7 +44,7 @@ function App() {
         ))}
       </div>
       <div>
-        <form id="user" action="" method="post">
+        <form id="user" action="" method="post" onSubmit={createUser}>
           <h3>Add User</h3>
           <h4>Please fill out your information</h4>
           <fieldset>
@@ -74,7 +75,6 @@ function App() {
               placeholder="Your username" type="text" tabindex="3" required />
           </fieldset>
           <button
-            onClick={createUser}
             name="submit" id="user-submit" type="submit" data-submit="...Sending"
           >Create User</button>
         </form>
